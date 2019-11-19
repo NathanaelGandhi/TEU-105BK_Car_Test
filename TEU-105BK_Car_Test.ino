@@ -1,5 +1,4 @@
-/* Original code https://pastebin.com/SJvQZiSZ Sep 23rd, 2011
-Modified by Nathanael Gandhi Nov 18, 2019 */
+/* Nathanael Gandhi Nov 2019 */
 
 //STEERING POSITIONS:
 //Neutral:90
@@ -47,13 +46,15 @@ void Stop() {
 void loop() {
   alarm.write(90);
   steering.write(SteeringNeutral);
+  throttle.write(SpeedNeutral);
   int i = SpeedNeutral;
   int j = SteeringNeutral;
   bool iDir = true;
   bool jDir = true;
   bool drive = true;
   int loop = 0;
-  delay(2000);
+  Serial.println("Starting TEU-105BK Car Test Sequence");
+  delay(3000);
   while(drive)
   {
     if(i==AccelerationSpeed)
@@ -116,10 +117,9 @@ void loop() {
     Serial.println(i);
     
     steering.write(j);
-//    throttle.write(i);
-    alarm.write(j);
+    throttle.write(i);
     loop++;
-    delay(750);
+    delay(500);
   }
   Stop();
 }
